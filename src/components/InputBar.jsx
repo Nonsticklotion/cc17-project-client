@@ -1,13 +1,22 @@
-export default function InputBar() {
+function InputBar(props) {
+  const { placeholder, type = "text", error, value, onChange, name } = props;
   return (
-    <div>
+    <div className="w-full bg-green-400 text-center">
       <input
-        type="search"
-        id="default-search"
-        className="block w-3/4 py-4  px-3 ps-4 text-sm focus:outline-custom-medium text-custom-medium border border-custom-medium rounded-lg  focus:ring-custom-medium focus:border-custom-medium dark:bg-white dark:border-custom-medium dark:placeholder-custom-medium dark:text-custom-medium dark:focus:ring-custom-medium dark:focus:outline-custom-medium dark:focus:border-custom-medium"
-        placeholder="Input"
-        required
+        type={type}
+        className={` py-4 w-9/12 px-3 ps-4 text-sm  focus:outline-custom-medium text-custom-medium border  rounded-lg  focus:ring-custom-medium focus:border-custom-medium ${
+          error
+            ? "border-red-500 focus:ring-red-300"
+            : "border-custom-medium focus:border-custom-medium focus:ring-custom-medium"
+        }`}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        name={name}
       />
+      {error ? <small className="text-red-500">{error}</small> : null}
     </div>
   );
 }
+
+export default InputBar;
