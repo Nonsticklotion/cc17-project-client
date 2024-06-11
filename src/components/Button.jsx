@@ -1,9 +1,10 @@
-export default function Button() {
+export default function Button({ children, onClick }) {
   return (
-    <>
-      <div className="bg-custom-light w-24 px-16 py-3 flex justify-center items-center rounded-lg hover:bg-custom-medium cursor-pointer">
-        Button
-      </div>
-    </>
+    <button
+      className=" bg-custom-bitlightest w-24 px-16 py-3 flex justify-center items-center rounded-lg text-white text-sm hover:bg-custom-lightest cursor-pointer"
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }

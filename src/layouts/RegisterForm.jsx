@@ -1,6 +1,10 @@
 import InputBar from "../components/InputBar";
 import Button from "../components/Button";
 import { useState } from "react";
+import validateRegister from "../features/validators/validatate-register";
+import authApi from "../api/auth";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
 
 const initialInput = {
   email: "",
@@ -14,39 +18,77 @@ const initialInputError = {
   confirmPassword: "",
 };
 
-export default function RegisterForm() {
+export default function RegisterForm({ onSuccess }) {
   const [input, setInput] = useState(initialInput);
   const [inputError, setInputError] = useState(initialInputError);
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      const error = validateRegister(input);
+      // console.log(error);
+      // console.log(error);
+      if (error) {
+        return setInputError(error);
+      }
+      console.log(input);
+      setInputError({
+        ...initialInput,
+      });
+      await authApi.register(input);
+      onSuccess();
+      toast.success("register successfully.please login to continue.");
+    } catch (err) {
+      console.log(err);
+      if (err instanceof AxiosError) {
+        if (err.response?.data?.message) {
+          setInputError((prev) => ({
+            ...prev,
+            email: "Email already in use",
+          }));
+        }
+      } else {
+        // Handle other types of errors (optional)
+        toast.error("An unexpected error occurred. Please try again.");
+        console.error(err);
+      }
+    }
+  };
+
   return (
-    <div className="w-2/5 flex flex-col justify-center items-center bg-red-400 gap-7">
-      <div className="pl-5 text-3xl font-bold">Register</div>
-      <InputBar
-        placeholder="email"
-        name="email"
-        value={input.email}
-        error={inputError.email}
-        onChange={handleChangeInput}
-      />
-      <InputBar
-        placeholder="password"
-        name="password"
-        value={input.password}
-        error={inputError.password}
-        type="password"
-        onChange={handleChangeInput}
-      />
-      <InputBar
-        placeholder="confirm password"
-        name="confirmPassword"
-        value={input.confirmPassword}
-        error={inputError.confirmPassword}
-        type="password"
-        onChange={handleChangeInput}
-      />
-      <Button />
-    </div>
+    <>
+      <form onSubmit={handleSubmitForm}>
+        <div className=" w-full flex flex-col justify-center items-center gap-7 rounded-lg  border-2 border-custom-lightest p-5">
+          {/* <div className="pl-5 text-3xl font-bold">Register</div> */}
+          <InputBar
+            placeholder="Email"
+            name="email"
+            value={input.email}
+            error={inputError.email}
+            onChange={handleChangeInput}
+          />
+          <InputBar
+            placeholder="Password"
+            name="password"
+            value={input.password}
+            error={inputError.password}
+            type="password"
+            onChange={handleChangeInput}
+          />
+          <InputBar
+            placeholder="Confirm password"
+            name="confirmPassword"
+            value={input.confirmPassword}
+            error={inputError.confirmPassword}
+            type="password"
+            onChange={handleChangeInput}
+          />
+          <Button>Register</Button>
+        </div>
+      </form>
+    </>
   );
 }

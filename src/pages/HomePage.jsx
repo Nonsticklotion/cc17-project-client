@@ -1,3 +1,4 @@
+
 import RegisterForm from "../layouts/RegisterForm";
 
 export default function HomePage() {
