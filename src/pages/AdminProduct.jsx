@@ -8,6 +8,7 @@ import InputBar from "../components/InputBar";
 import AddProductForm from "../layouts/AddProductForm";
 import adminApi from "../api/admin";
 
+
 // const data = [
 //   {
 //     id: 2,
@@ -99,6 +100,8 @@ export default function AdminProduct() {
   const [openTrash, setOpenTrash] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -112,6 +115,8 @@ export default function AdminProduct() {
     fetchProducts();
   }, []);
 
+  
+
   const handleEditClick = (product) => {
     setSelectedProduct(product);
     setOpen(true);
@@ -124,6 +129,10 @@ export default function AdminProduct() {
     setOpenAdd(true);
   };
 
+  const handleAddProduct = (newProduct) => {
+    setProducts([...products, newProduct]);
+    setOpenAdd(false);
+  };
   return (
     <>
       <div className="flex flex-col">
@@ -282,7 +291,7 @@ export default function AdminProduct() {
         onClose={() => setOpenAdd(false)}
         width={"52"}
       >
-        <AddProductForm />
+        <AddProductForm onAdd={handleAddProduct}/>
       </Modal>
     </>
   );

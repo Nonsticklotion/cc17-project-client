@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import adminApi from "../api/admin";
 import Spinner from "../components/Spinner";
 
-const AddProductForm = () => {
+const AddProductForm = ({ onAdd }) => {
   const [formData, setFormData] = useState({
     bookName: "",
     author: "",
@@ -52,7 +52,8 @@ const AddProductForm = () => {
       }
 
       setLoading(true);
-      await adminApi.createProduct(data); // ส่ง FormData ไปยัง API
+      const response = await adminApi.createProduct(data); // ส่ง FormData ไปยัง API
+      onAdd(response.data.data);
       toast.success("Product created successfully");
     } catch (err) {
       toast.error(err.response?.data?.error || err.message);

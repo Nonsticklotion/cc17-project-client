@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginHeader() {
   const { logout, authUser } = useAuth();
-
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <div
       className={`flex justify-between items-center ${
@@ -17,7 +22,7 @@ export default function LoginHeader() {
         {authUser.isAdmin ? <Link to="/admin">Edit page</Link> : ""}
         <Link>All product</Link>
         <Link>{authUser.email}</Link>
-        <div onClick={() => logout()} className="hover:cursor-pointer">
+        <div onClick={() => handleLogout()} className="hover:cursor-pointer">
           Logout
         </div>
       </div>
