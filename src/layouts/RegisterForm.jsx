@@ -29,8 +29,6 @@ export default function RegisterForm({ onSuccess }) {
     try {
       e.preventDefault();
       const error = validateRegister(input);
-      // console.log(error);
-      // console.log(error);
       if (error) {
         return setInputError(error);
       }

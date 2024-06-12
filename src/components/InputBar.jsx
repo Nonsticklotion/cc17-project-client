@@ -25,7 +25,7 @@ function InputBar(props) {
   const { placeholder, type = "text", error, value, onChange, name } = props;
 
   return (
-    <div className="flex flex-col justify-between w-full text-center mt-5">
+    <div className="flex flex-col justify-between w-full text-center">
       <div >
         <input
           type={type}
