@@ -8,30 +8,9 @@ import InputBar from "../components/InputBar";
 import AddProductForm from "../layouts/AddProductForm";
 import adminApi from "../api/admin";
 
-const categories = [
-  {
-    id: 5,
-    category: "Biography",
-  },
-  {
-    id: 1,
-    category: "Fiction",
-  },
-  {
-    id: 4,
-    category: "History",
-  },
-  {
-    id: 2,
-    category: "Non-Fiction",
-  },
-  {
-    id: 3,
-    category: "Science",
-  },
-];
 export default function AdminProduct() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
   const [openTrash, setOpenTrash] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
@@ -46,8 +25,17 @@ export default function AdminProduct() {
         console.error("There was an error fetching the product data!", error);
       }
     };
+    const fetchCategory = async () => {
+      try {
+        const res = await adminApi.getCategory();
+        setCategories(res.data.result);
+      } catch (error) {
+        console.error("There was an error fetching the category data!", error);
+      }
+    };
 
     fetchProducts();
+    fetchCategory();
   }, []);
 
   const handleEditClick = (product) => {
