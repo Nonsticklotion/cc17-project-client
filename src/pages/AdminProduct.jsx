@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import Modal from "../components/Modal";
 import EditForm from "../layouts/EditForm";
 import ConfirmDelete from "../components/ConfirmDelete";
-import InputBar from "../components/InputBar";
 import AddProductForm from "../layouts/AddProductForm";
 import adminApi from "../api/admin";
+import Button from "../components/Button";
 
 export default function AdminProduct() {
   const [products, setProducts] = useState([]);
@@ -64,6 +64,12 @@ export default function AdminProduct() {
   const handleProductDelete = (productId) => {
     setProducts(products.filter((product) => product.id !== productId));
   };
+
+  // const handleSearchBycategory = () => {
+  //   try{
+
+  //   }
+  // }
   return (
     <>
       <div className="flex flex-col">
@@ -88,12 +94,6 @@ export default function AdminProduct() {
                 action=""
                 className="px-1 py-1  flex flex-row  justify-center items-center  gap-4 "
               >
-                <InputBar
-                  type="text"
-                  name="bookName"
-                  value=""
-                  placeholder="Search"
-                />
                 <div className="shrink-0 w-40">
                   <select
                     id="countries"
@@ -107,6 +107,9 @@ export default function AdminProduct() {
                     ))}
                   </select>
                 </div>
+                <Button bg="green" color="white">
+                  Search
+                </Button>
               </form>
             </div>
           </div>

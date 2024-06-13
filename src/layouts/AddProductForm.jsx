@@ -11,6 +11,7 @@ const AddProductForm = ({ onAdd }) => {
     bookName: "",
     author: "",
     price: "",
+    description: "",
     category: "",
     stock: "",
     productPic: "",
@@ -45,6 +46,7 @@ const AddProductForm = ({ onAdd }) => {
       data.append("bookName", formData.bookName);
       data.append("author", formData.author);
       data.append("price", formData.price);
+      data.append("description", formData.description);
       data.append("category", formData.category);
       data.append("stock", formData.stock);
       if (formData.productPic) {
@@ -102,6 +104,15 @@ const AddProductForm = ({ onAdd }) => {
                 type="number"
                 name="price"
                 value={formData?.price}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Description</label>
+              <InputBar
+                type="text"
+                name="description"
+                value={formData?.description}
                 onChange={handleChange}
               />
             </div>
