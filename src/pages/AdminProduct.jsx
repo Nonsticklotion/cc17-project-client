@@ -8,70 +8,6 @@ import InputBar from "../components/InputBar";
 import AddProductForm from "../layouts/AddProductForm";
 import adminApi from "../api/admin";
 
-
-// const data = [
-//   {
-//     id: 2,
-//     bookPic:
-//       "https://res.cloudinary.com/didy6sdzf/image/upload/v1718169628/cc3tueo0rr0ndfgnpexd.png",
-
-//     bookName: "Clean Code",
-//     author: "Robert C. Martin",
-//     price: 3000,
-//     categoryId: 1,
-//     stock: 30,
-//     createdAt: "2024-06-09T15:17:38.000Z",
-//     updatedAt: "2024-06-09T15:17:38.000Z",
-//     category: {
-//       category: "Fiction",
-//     },
-    //   },
-    //     {
-    //       id: 3,
-    //       bookPic:
-    //         "../../../../bookPic/Create_a_book_cover_for_a_romance_theme_with_a_cou.png",
-    //       bookName: "A Brief History of Time",
-    //       author: "Stephen Hawking",
-    //       price: 2500,
-    //       categoryId: 3,
-    //       stock: 40,
-    //       createdAt: "2024-06-09T15:17:49.000Z",
-    //       updatedAt: "2024-06-09T15:17:49.000Z",
-    //       category: {
-    //         category: "Science",
-    //       },
-    //     },
-    //     {
-    //       id: 4,
-    //       bookPic:
-    //         "../../../../bookPic/Create_a_book_cover_for_a_romance_theme_with_a_cou.png",
-    //       bookName: "Sapiens: A Brief History of Humankind",
-    //       author: "Yuval Noah Harari",
-    //       price: 2800,
-    //       categoryId: 4,
-    //       stock: 20,
-    //       createdAt: "2024-06-09T15:17:59.000Z",
-    //       updatedAt: "2024-06-09T15:17:59.000Z",
-    //       category: {
-    //         category: "History",
-    //       },
-    //     },
-    //     {
-    //       id: 5,
-    //       bookPic:
-    //         "../../../../bookPic/Create_a_book_cover_for_a_science_fiction_theme_wi.png",
-    //       bookName: "Steve Jobs",
-    //       author: "Walter Isaacson",
-    //       price: 3200,
-    //       categoryId: 5,
-    //       stock: 25,
-    //       createdAt: "2024-06-09T15:18:07.000Z",
-    //       updatedAt: "2024-06-09T15:18:07.000Z",
-    //       category: {
-    //         category: "Biography",
-    //       },
-//   },
-// ];
 const categories = [
   {
     id: 5,
@@ -101,21 +37,18 @@ export default function AdminProduct() {
   const [openAdd, setOpenAdd] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await adminApi.getProduct();
         setProducts(response.data.data);
       } catch (error) {
-        console.error('There was an error fetching the product data!', error);
+        console.error("There was an error fetching the product data!", error);
       }
     };
-    
+
     fetchProducts();
   }, []);
-
-  
 
   const handleEditClick = (product) => {
     setSelectedProduct(product);
@@ -132,6 +65,16 @@ export default function AdminProduct() {
   const handleAddProduct = (newProduct) => {
     setProducts([...products, newProduct]);
     setOpenAdd(false);
+  };
+  const handleProductUpdate = (productId, updatedData) => {
+    setProducts(
+      products.map((product) =>
+        product.id === productId ? { ...product, ...updatedData } : product
+      )
+    );
+  };
+  const handleProductDelete = (productId) => {
+    setProducts(products.filter((product) => product.id !== productId));
   };
   return (
     <>
@@ -274,7 +217,11 @@ export default function AdminProduct() {
         setOpen={setOpen}
         onClose={() => setOpen(false)}
       >
-        <EditForm product={selectedProduct} />
+        <EditForm
+          product={selectedProduct}
+          onProductUpdate={handleProductUpdate}
+          onClose={() => setOpen(false)}
+        />
       </Modal>
       <Modal
         title="Confirm Delete ?"
@@ -282,7 +229,11 @@ export default function AdminProduct() {
         setOpen={setOpenTrash}
         onClose={() => setOpenTrash(false)}
       >
-        <ConfirmDelete product={selectedProduct} />
+        <ConfirmDelete
+          product={selectedProduct}
+          onProductDelete={handleProductDelete}
+          onClose={() => setOpenTrash(false)}
+        />
       </Modal>
       <Modal
         title="Add Product"
@@ -291,7 +242,7 @@ export default function AdminProduct() {
         onClose={() => setOpenAdd(false)}
         width={"52"}
       >
-        <AddProductForm onAdd={handleAddProduct}/>
+        <AddProductForm onAdd={handleAddProduct} />
       </Modal>
     </>
   );
