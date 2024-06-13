@@ -15,6 +15,7 @@ export default function AdminProduct() {
   const [openTrash, setOpenTrash] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -65,11 +66,26 @@ export default function AdminProduct() {
     setProducts(products.filter((product) => product.id !== productId));
   };
 
-  // const handleSearchBycategory = () => {
-  //   try{
-
-  //   }
-  // }
+  const onChangeSelect = (e) => {
+    const value = e.target.value;
+    setSelectedCategory(value);
+  };
+  const handleSearchBycategory = async (e) => {
+    try {
+      e.preventDefault();
+      if (selectCategory) {
+        console.log(selectCategory);
+        const response = await adminApi.getProductFromCategory(selectCategory);
+        console.log(response);
+        setProducts(response.data.data);
+      } else {
+        const response = await adminApi.getProduct();
+        setProducts(response.data.data);
+      }
+    } catch (error) {
+      console.error("There was an error fetching the product data!", error);
+    }
+  };
   return (
     <>
       <div className="flex flex-col">
@@ -93,13 +109,17 @@ export default function AdminProduct() {
               <form
                 action=""
                 className="px-1 py-1  flex flex-row  justify-center items-center  gap-4 "
+                onSubmit={handleSearchBycategory}
               >
                 <div className="shrink-0 w-40">
                   <select
                     id="countries"
                     className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={onChangeSelect}
                   >
-                    <option selected>Choose category</option>
+                    <option selected value="">
+                      Choose category
+                    </option>
                     {categories.map((categ) => (
                       <option value={categ.category} key={categ.id}>
                         {categ.category}

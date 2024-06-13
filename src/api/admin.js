@@ -11,4 +11,8 @@ adminApi.deleteProductById = (productId) =>
 
 adminApi.updateProductDetails = (formData) =>
   axios.patch("/admin/product", formData);
+
+adminApi.getProductFromCategory = (category) =>
+  axios.get(`/user/product/${category}`);
+
 export default adminApi;
