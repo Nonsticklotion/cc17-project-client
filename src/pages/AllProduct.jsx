@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import adminApi from "../api/admin";
 import Button from "../components/Button";
@@ -66,6 +67,7 @@ export default function AllProduct() {
                 <select
                   id="countries"
                   className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={selectCategory}
                   onChange={onChangeSelect}
                 >
                   <option selected value="">
@@ -86,13 +88,13 @@ export default function AllProduct() {
         </div>
       </ContainerWithWidth>
       <ContainerWithWidth>
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-row gap-8 flex-wrap">
           {products?.map((product) => (
-            <>
+            <React.Fragment key={product.id}>
               <Link to={`/product/${product.id}`}>
-                <Card key={product.id} product={product} />
+                <Card product={product} />
               </Link>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </ContainerWithWidth>

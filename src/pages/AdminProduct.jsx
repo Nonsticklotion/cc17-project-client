@@ -110,6 +110,7 @@ export default function AdminProduct() {
                 action=""
                 className="px-1 py-1  flex flex-row  justify-center items-center  gap-4 "
                 onSubmit={handleSearchBycategory}
+                
               >
                 <div className="shrink-0 w-40">
                   <select

@@ -21,10 +21,23 @@ export default function LoginHeader() {
         </div>
       </Link>
       <div className="pr-5 flex justify-end gap-5">
-        {authUser.isAdmin ? <Link to="/admin">Edit page</Link> : ""}
-        <Link to="/allproduct">All product</Link>
-        <Link to="/profile">{authUser.email}</Link>
-        <div onClick={() => handleLogout()} className="hover:cursor-pointer">
+        {authUser.isAdmin ? (
+          <Link to="/admin" className="text-white">
+            Edit page
+          </Link>
+        ) : (
+          ""
+        )}
+        <Link to="/allproduct" className="text-white">
+          All product
+        </Link>
+        <Link to="/profile" className="text-white">
+          {authUser.email}
+        </Link>
+        <div
+          onClick={() => handleLogout()}
+          className="text-white hover:cursor-pointer"
+        >
           Logout
         </div>
       </div>
