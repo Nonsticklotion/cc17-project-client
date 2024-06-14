@@ -53,9 +53,11 @@ export default function ProductDescription() {
       fetchProduct();
     }
   }, [productId]);
+
   const handleReviewAdded = (newReview) => {
     setReviews([...reviews, newReview]);
   };
+
   return (
     <>
       <div className="pt-5">
@@ -135,7 +137,7 @@ export default function ProductDescription() {
               >
                 <div className="text-gray-600">
                   <span className="font-medium">By User ID : </span>{" "}
-                  {review?.user.email}
+                  {review?.user?.email || authUser.email}
                 </div>
                 <div className="text-gray-600 mb-1">
                   <span className="font-medium">Rating : </span>{" "}

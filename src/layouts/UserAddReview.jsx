@@ -21,10 +21,12 @@ export default function UserAddReview({ productId, onReviewAdded }) {
       try {
         const formData = { productId, ratingId: rating, comment: review };
         const response = await userApi.createReview(formData);
+
         if (response) {
           toast.success("Review Success");
         }
-        onReviewAdded(response.data.data);
+        console.log({ ...response.data.data, email: authUser?.email });
+        onReviewAdded({ ...response.data.data, email: authUser?.email });
         setReview("");
         setRating(0);
       } catch (error) {
