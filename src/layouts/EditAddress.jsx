@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import userApi from "../api/user";
 import { toast } from "react-toastify";
 
-export default function EditAddress({ onClose }) {
+export default function EditAddress({onEdit}) {
   const { authUser } = useAuth();
   const [formData, setFormData] = useState({
     firstName: authUser?.firstName || "",
@@ -23,8 +23,9 @@ export default function EditAddress({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await userApi.updateAddress(formData); // Assuming updateUser is a function that updates user details
-      onClose(); // Close the modal after successful update
+     const response = await userApi.updateAddress(formData); // Assuming updateUser is a function that updates user details
+     console.log(response);
+     onEdit(response.data.data)
       toast.success("update success")
     } catch (error) {
       console.error("Failed to update address:", error);

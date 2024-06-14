@@ -3,10 +3,28 @@ import ContainerWithWidth from "../components/ContainerWithAutoWidth";
 import Modal from "../components/Modal";
 import useAuth from "../hooks/useAuth";
 import EditAddress from "./EditAddress";
+import { useEffect } from "react";
 
 export default function ProfileContainer() {
   const [openEdit, setOpenEdit] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
   const { authUser } = useAuth();
+  useEffect(() => {
+    if (authUser) {
+      setUserInfo({
+        email: authUser.email,
+        firstName: authUser.firstName,
+        lastName: authUser.lastName,
+        phone: authUser.phone,
+        address: authUser.address,
+      });
+    }
+  }, [authUser]);
+
+  const handleEditInfo = (newInfo) => {
+    setUserInfo(newInfo);
+    setOpenEdit(false);
+  };
   return (
     <>
       <div className="pt-5">
@@ -14,20 +32,20 @@ export default function ProfileContainer() {
           <div className="flex flex-row justify-between">
             <div>
               <div className="font-bold text-3xl">
-                {authUser?.email} Address
+                {userInfo?.email} Address
               </div>
               <div className="pt-5 pb-2 font-bold">
                 Firstname :{" "}
-                {authUser?.firstName ? authUser?.firstName : "empty"}
+                {userInfo?.firstName ? userInfo?.firstName : "empty"}
               </div>
               <div className="pb-2 font-bold">
-                Lastname : {authUser?.lastName ? authUser?.lastName : "empty"}
+                Lastname : {userInfo?.lastName ? userInfo?.lastName : "empty"}
               </div>
               <div className="pb-2 font-bold">
-                Phone : {authUser?.phone ? authUser?.phone : "empty"}
+                Phone : {userInfo?.phone ? userInfo?.phone : "empty"}
               </div>
               <div className="pb-2 font-bold">
-                Address : {authUser?.address ? authUser?.address : "empty"}
+                Address : {userInfo?.address ? userInfo?.address : "empty"}
               </div>
             </div>
             <div
@@ -51,7 +69,7 @@ export default function ProfileContainer() {
         setOpen={setOpenEdit}
         onClose={() => setOpenEdit(false)}
       >
-        <EditAddress />
+        <EditAddress onEdit={handleEditInfo} />
       </Modal>
     </>
   );

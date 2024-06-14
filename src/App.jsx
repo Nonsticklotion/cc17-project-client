@@ -6,7 +6,6 @@ import AuthContextProvider from "./contexts/authContext";
 
 
 function App() {
-  
   return (
     <Suspense fallback={<Spinner />}>
       <AuthContextProvider>
