@@ -87,17 +87,19 @@ export default function AllProduct() {
           </div>
         </div>
       </ContainerWithWidth>
-      <ContainerWithWidth>
-        <div className="flex flex-row gap-8 flex-wrap">
-          {products?.map((product) => (
-            <React.Fragment key={product.id}>
-              <Link to={`/product/${product.id}`}>
-                <Card product={product} />
-              </Link>
-            </React.Fragment>
-          ))}
-        </div>
-      </ContainerWithWidth>
+      <div className="mt-5">
+        <ContainerWithWidth>
+          <div className="flex flex-row gap-8 flex-wrap">
+            {products?.map((product) => (
+              <React.Fragment key={product.id}>
+                <Link to={`/product/${product.id}`}>
+                  <Card product={product} />
+                </Link>
+              </React.Fragment>
+            ))}
+          </div>
+        </ContainerWithWidth>
+      </div>
     </div>
   );
 }
