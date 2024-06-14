@@ -14,7 +14,7 @@ export default function GuestHeader() {
           Book for everyone
         </div>
         <div className="pr-5 flex justify-end gap-5">
-          <Link>All product</Link>
+        <Link to="/allproduct">All product</Link>
           <div
             className="hover:cursor-pointer"
             onClick={() => setOpenLogin(true)}

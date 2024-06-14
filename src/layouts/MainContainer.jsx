@@ -8,10 +8,11 @@ export default function MainContainer() {
   const { authUser } = useAuth();
   return (
     <>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gray-200">
         {authUser ? <LoginHeader /> : <GuestHeader />}
-
-        <Outlet />
+        <div className="min-h-screen flex flex-col px-32">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </>

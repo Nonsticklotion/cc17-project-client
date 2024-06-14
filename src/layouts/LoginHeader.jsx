@@ -15,13 +15,15 @@ export default function LoginHeader() {
         authUser.isAdmin ? "bg-custom-medium " : "bg-custom-lightest"
       } shadow px-32 py-3`}
     >
-      <div className="pl-5 text-xl font-bold text-black w-40">
-        Book for everyone
-      </div>
+      <Link to="/">
+        <div className="pl-5 text-xl font-bold text-black w-40">
+          Book for everyone
+        </div>
+      </Link>
       <div className="pr-5 flex justify-end gap-5">
         {authUser.isAdmin ? <Link to="/admin">Edit page</Link> : ""}
-        <Link>All product</Link>
-        <Link>{authUser.email}</Link>
+        <Link to="/allproduct">All product</Link>
+        <Link to="/profile">{authUser.email}</Link>
         <div onClick={() => handleLogout()} className="hover:cursor-pointer">
           Logout
         </div>

@@ -4,7 +4,9 @@ import Router from "./Routes";
 import Spinner from "./components/Spinner";
 import AuthContextProvider from "./contexts/authContext";
 
+
 function App() {
+  
   return (
     <Suspense fallback={<Spinner />}>
       <AuthContextProvider>
