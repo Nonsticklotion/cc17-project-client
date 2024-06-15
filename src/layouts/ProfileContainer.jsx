@@ -4,6 +4,7 @@ import Modal from "../components/Modal";
 import useAuth from "../hooks/useAuth";
 import EditAddress from "./EditAddress";
 import { useEffect } from "react";
+import MyOrders from "./MyOrders";
 
 export default function ProfileContainer() {
   const [openEdit, setOpenEdit] = useState(false);
@@ -61,6 +62,11 @@ export default function ProfileContainer() {
               </svg>
             </div>
           </div>
+        </ContainerWithWidth>
+      </div>
+      <div className="pt-5">
+        <ContainerWithWidth>
+          <MyOrders />
         </ContainerWithWidth>
       </div>
       <Modal

@@ -15,4 +15,12 @@ adminApi.updateProductDetails = (formData) =>
 adminApi.getProductFromCategory = (category) =>
   axios.get(`/user/product/${category}`);
 
+adminApi.getOrders = () => axios.get("/admin/order");
+
+adminApi.updatePaymentStatus = (orderId, status) =>
+  axios.patch("/admin/order/payment", { orderId, status });
+
+adminApi.updateShipmentStatus = (orderId) =>
+  axios.patch("/admin/order/shipment", { orderId });
+
 export default adminApi;

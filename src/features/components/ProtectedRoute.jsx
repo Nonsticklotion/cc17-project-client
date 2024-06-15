@@ -5,7 +5,7 @@ import Spinner from '../../components/Spinner';
 export default function ProtectedRoute({ children }) {
   const { authUser, isAuthUserLoading } = useAuth()
 
-  if (!authUser.isAdmin && !isAuthUserLoading) {
+  if (!authUser?.isAdmin && !isAuthUserLoading) {
     return <Navigate to="/" />;
   }
 

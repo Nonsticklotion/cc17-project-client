@@ -30,8 +30,22 @@ export default function Router() {
             </ProtectedRoute>
           ),
           children: [
-            { path: "orders", element: <AdminOrder /> },
-            { path: "products", element: <AdminProduct /> },
+            {
+              path: "orders",
+              element: (
+                <ProtectedRoute>
+                  <AdminOrder />
+                </ProtectedRoute>
+              ),
+            },
+            {
+              path: "products",
+              element: (
+                <ProtectedRoute>
+                  <AdminProduct />
+                </ProtectedRoute>
+              ),
+            },
           ],
         },
         {
