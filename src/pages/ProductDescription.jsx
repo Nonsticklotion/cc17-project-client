@@ -113,7 +113,7 @@ export default function ProductDescription() {
                     <Button
                       bg="green"
                       color="white"
-                      onClick={() => addToCart(product)}
+                      onClick={() => addToCart({ ...product, amount: 1 })}
                     >
                       Add to Cart
                     </Button>

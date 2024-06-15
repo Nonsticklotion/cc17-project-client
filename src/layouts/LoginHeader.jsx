@@ -28,6 +28,9 @@ export default function LoginHeader() {
         ) : (
           ""
         )}
+        <Link to="/cart" className="text-white">
+          Cart
+        </Link>
         <Link to="/allproduct" className="text-white">
           All product
         </Link>

@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 import Spinner from "../components/Spinner";
 import ProfileContainer from "../layouts/ProfileContainer";
 import ProtectedRoute from "../features/components/ProtectedRoute";
+import Cart from "../layouts/Cart";
 
 const AdminOrder = lazy(() => import("../pages/AdminOrder"));
 const AdminProduct = lazy(() => import("../pages/AdminProduct"));
@@ -32,6 +33,10 @@ export default function Router() {
             { path: "orders", element: <AdminOrder /> },
             { path: "products", element: <AdminProduct /> },
           ],
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
         { path: "profile", element: <ProfileContainer /> },
       ],

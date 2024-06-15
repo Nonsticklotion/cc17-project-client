@@ -15,4 +15,5 @@ userApi.getReviewFromProductId = (productId) =>
 userApi.deleteReviewWithProductId = (productId) =>
   axios.delete(`/user/review/${productId}`);
 
+userApi.createOrder = (orderData) => axios.post("/user/order", orderData);
 export default userApi;
