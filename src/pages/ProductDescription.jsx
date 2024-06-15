@@ -58,6 +58,16 @@ export default function ProductDescription() {
     setReviews([...reviews, newReview]);
   };
 
+  const handleDeleteReview = async (productId) => {
+    try {
+      await userApi.deleteReviewWithProductId(productId);
+      console.log(reviews);
+      setReviews(reviews.filter((review) => review.userId !== authUser.id));
+    } catch (error) {
+      console.error("There was an error deleting the review!", error);
+    }
+  };
+
   return (
     <>
       <div className="pt-5">
@@ -149,6 +159,15 @@ export default function ProductDescription() {
                     Comment : {review.comment}
                   </span>
                 </div>
+                {authUser && authUser.id === review.userId && (
+                  <Button
+                    bg="red"
+                    color="white"
+                    onClick={() => handleDeleteReview(productId)}
+                  >
+                    Delete
+                  </Button>
+                )}
               </div>
             ))}
           </div>
