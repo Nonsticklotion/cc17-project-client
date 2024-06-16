@@ -10,7 +10,7 @@ export default function MainContainer() {
     <>
       <div className="min-h-screen flex flex-col bg-gray-200">
         {authUser ? <LoginHeader /> : <GuestHeader />}
-        <div className="min-h-screen flex flex-col px-32">
+        <div className="min-h-screen flex flex-col px-28">
           <Outlet />
         </div>
         <Footer />

@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 import Spinner from "../components/Spinner";
 import ProfileContainer from "../layouts/ProfileContainer";
 import ProtectedRoute from "../features/components/ProtectedRoute";
+import ProtectedUserRoute from "../features/components/ProtectedUserRoute";
 import Cart from "../layouts/Cart";
 
 const AdminOrder = lazy(() => import("../pages/AdminOrder"));
@@ -50,9 +51,20 @@ export default function Router() {
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: (
+            <ProtectedUserRoute>
+              <Cart />
+            </ProtectedUserRoute>
+          ),
         },
-        { path: "profile", element: <ProfileContainer /> },
+        {
+          path: "profile",
+          element: (
+            <ProtectedUserRoute>
+              <ProfileContainer />
+            </ProtectedUserRoute>
+          ),
+        },
       ],
     },
   ]);

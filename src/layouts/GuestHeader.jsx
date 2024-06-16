@@ -10,9 +10,11 @@ export default function GuestHeader() {
   return (
     <>
       <div className="flex justify-between items-center bg-custom-lightest shadow px-32 py-3">
+      <Link to="/">
         <div className="pl-5 text-xl font-bold text-black w-40">
           Book for everyone
         </div>
+      </Link>
         <div className="pr-5 flex justify-end gap-5">
         <Link to="/allproduct">All product</Link>
           <div

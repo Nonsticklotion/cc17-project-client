@@ -72,7 +72,7 @@ import Modal from "../components/Modal";
 import { useState } from "react";
 
 export default function MyOrders() {
-  const { orders, loading, error, deleteOrder, updatePaymentPic } = useOrder();
+  const { orders, loading, deleteOrder, updatePaymentPic } = useOrder();
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -99,9 +99,9 @@ export default function MyOrders() {
     <>
       <h1 className="text-3xl font-bold mb-6">My Orders</h1>
       {loading && <Spinner />}
-      {error && <p className="text-red-500">{error}</p>}
+      {/* {error && <p className="text-red-500">{error}</p>} */}
       <div className="space-y-4">
-        {orders.map((order) => (
+        {orders?.map((order) => (
           <div key={order.id} className="p-4 bg-white rounded shadow-md">
             <h2 className="text-2xl font-bold mb-2">Order ID: {order.id}</h2>
             <p className="text-gray-700 mb-2">Total Price: ${order.totalPrice}</p>
