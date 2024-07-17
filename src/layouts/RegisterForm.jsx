@@ -60,7 +60,6 @@ export default function RegisterForm({ onSuccess }) {
     <>
       <form onSubmit={handleSubmitForm}>
         <div className=" w-full flex flex-col justify-center items-center gap-7 rounded-lg  border-2 border-custom-lightest p-5">
-          {/* <div className="pl-5 text-3xl font-bold">Register</div> */}
           <InputBar
             placeholder="Email"
             name="email"
@@ -84,7 +83,9 @@ export default function RegisterForm({ onSuccess }) {
             type="password"
             onChange={handleChangeInput}
           />
-          <Button>Register</Button>
+          <Button bg="green" color="white">
+            Register
+          </Button>
         </div>
       </form>
     </>

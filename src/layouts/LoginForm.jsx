@@ -35,7 +35,7 @@ export default function LoginForm() {
       setInputError(initialInputLoginError);
 
       await login(inputLogin);
-      // navigate("/");
+      setInputLogin(false)
       toast.success("Login success");
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -67,8 +67,12 @@ export default function LoginForm() {
           type="password"
           onChange={handleChangeInput}
         />
-        <Button>Login</Button>
+        <Button bg="green" color="white">
+          Login
+        </Button>
       </div>
     </form>
   );
 }
+
+

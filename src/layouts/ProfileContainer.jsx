@@ -10,6 +10,8 @@ export default function ProfileContainer() {
   const [openEdit, setOpenEdit] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const { authUser } = useAuth();
+
+
   useEffect(() => {
     if (authUser) {
       setUserInfo({
@@ -20,6 +22,7 @@ export default function ProfileContainer() {
         address: authUser.address,
       });
     }
+    
   }, [authUser]);
 
   const handleEditInfo = (newInfo) => {

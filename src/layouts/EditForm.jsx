@@ -83,7 +83,7 @@ const EditForm = ({ product, onClose, onProductUpdate }) => {
               onChange={handleChange}
             />
           </div>
-          <Button type="submit">Save Changes</Button>
+          <Button type="submit" color="white" bg="green">Save Changes</Button>
         </form>
       </div>
     </ContainerWithAutoWidth>
