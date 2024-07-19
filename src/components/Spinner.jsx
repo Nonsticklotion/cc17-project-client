@@ -1,4 +1,4 @@
-import { LoaderIcon } from "../../../../Fakebuck Material/icons";
+import { LoaderIcon } from "../icons";
 
 export default function Spinner({ transparent }) {
   return (
