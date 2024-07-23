@@ -99,7 +99,10 @@ export default function ProductDescription() {
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
                     Category:{" "}
-                    <span className="text-gray-500"> {product.categoryId}</span>
+                    <span className="text-gray-500">
+                      {" "}
+                      {product.category.category}
+                    </span>
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
                     Price:{" "}
