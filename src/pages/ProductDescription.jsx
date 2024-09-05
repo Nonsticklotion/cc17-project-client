@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import useAuth from "../hooks/useAuth";
 import { useCart } from "../hooks/useCart";
 import UserAddReview from "../layouts/UserAddReview";
+import { toast } from "react-toastify";
 
 export default function ProductDescription() {
   const [product, setProduct] = useState({});
@@ -70,11 +71,16 @@ export default function ProductDescription() {
     }
   };
 
+  const addToCartButton =  () => {
+    addToCart({ ...product, amount: 1 })
+toast.success(`add ${product.bookName} to cart`)
+  }
+
   return (
     <>
       <div className="pt-5">
         <ContainerWithWidth>
-          <div>
+          {/* <div>
             <div className="flex flex-row">
               <div className="w-2/5 flex justify-center items-center  p-5">
                 <img src={product?.bookPic} alt="" className=" w-1/2 p-5 " />
@@ -130,7 +136,71 @@ export default function ProductDescription() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <div className="bg-gray-100 py-10 px-5">
+  <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="flex flex-col md:flex-row">
+      {/* Image Section */}
+      <div className="w-full md:w-2/5 flex justify-center items-center p-5">
+        <img
+          src={product?.bookPic}
+          alt=""
+          className="w-3/4 md:w-1/2 rounded-lg object-cover p-5"
+        />
+      </div>
+
+      {/* Product Details Section */}
+      <div className="w-full md:w-3/5 p-5">
+        <div className="bg-white p-5">
+          <h1 className="text-4xl mb-4 font-bold text-gray-800">
+            {product?.bookName}
+          </h1>
+          <h2 className="text-2xl mb-4 text-gray-800 font-semibold">
+            Author: <span className="text-gray-600">{product?.author}</span>
+          </h2>
+          <h3 className="text-2xl mb-4 text-gray-800 font-semibold">
+            Rating: <span className="text-red-500">{averageRating}</span>
+          </h3>
+          <p className="text-xl mb-4 text-gray-800 font-semibold">
+            Description:{" "}
+            <span className="text-gray-600">{product?.description}</span>
+          </p>
+          <p className="text-xl mb-4 text-gray-800 font-semibold">
+            Category:{" "}
+            <span className="text-gray-600">{product?.category?.category}</span>
+          </p>
+          <p className="text-xl mb-4 text-gray-800 font-semibold">
+            Price: <span className="text-green-600">${product.price}</span>
+          </p>
+          <p className="text-xl mb-4 text-gray-800 font-semibold">
+            Stock: <span className="text-gray-600">{product.stock}</span>
+          </p>
+
+          {/* Button Section */}
+          {authUser ? (
+            <Button
+              bg="green"
+              color="white"
+              className="w-full py-2 rounded-lg text-lg font-semibold transition duration-200 ease-in-out transform hover:bg-green-600"
+              onClick={() => addToCartButton()}
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <Button
+              bg="gray"
+              color="white"
+              className="w-full py-2 rounded-lg text-lg font-semibold transition duration-200 ease-in-out transform hover:bg-gray-500 cursor-not-allowed"
+            >
+              Please Login
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         </ContainerWithWidth>
       </div>
       <div className="pt-5">
