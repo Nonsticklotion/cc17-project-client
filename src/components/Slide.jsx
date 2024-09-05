@@ -35,8 +35,6 @@ export default function Slide({ slides, width = "full" }) {
 
   return (
     <div className={`w-${width} h-96`}>
-      {" "}
-      {/* Locked height to 96 (24rem) */}
       <div className="w-full h-full overflow-hidden">
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, index) => (
@@ -56,7 +54,7 @@ export default function Slide({ slides, width = "full" }) {
                   <p className="text-xl text-gray-800 mb-2">{slide.author}</p>
                   <p className="text-xl text-red-500 mb-4">฿{slide.price}</p>
                   <Link
-                    to={`/books/${slide.id}`}
+                    to={`/product/${slide.id}`}
                     className="bg-pink-500 text-white px-4 py-2 rounded-full"
                   >
                     Go to Book

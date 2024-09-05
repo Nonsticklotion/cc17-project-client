@@ -4,6 +4,7 @@ const adminApi = {};
 
 adminApi.createProduct = (formData) => axios.post("/admin/product", formData);
 adminApi.getProduct = () => axios.get("/admin/product");
+adminApi.getHomeProduct = () => axios.get("/admin/homeproduct");
 adminApi.getCategory = () => axios.get("/admin/category");
 
 adminApi.deleteProductById = (productId) =>
