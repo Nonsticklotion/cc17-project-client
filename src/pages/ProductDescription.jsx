@@ -41,6 +41,8 @@ export default function ProductDescription() {
         try {
           const response = await userApi.getProductFromId(productId);
           setProduct(response.data.data);
+          console.log(product);
+          
           const reviewsResponse = await userApi.getReviewFromProductId(
             productId
           );
@@ -80,11 +82,11 @@ export default function ProductDescription() {
               <div className="w-3/5">
                 <div className="p-5 bg-white ">
                   <div className="text-4xl mb-5 font-bold">
-                    {product.bookName}
+                    {product?.bookName}
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
                     Author:
-                    <span className="text-gray-500"> {product.author}</span>
+                    <span className="text-gray-500"> {product?.author}</span>
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
                     Rating :
@@ -94,14 +96,14 @@ export default function ProductDescription() {
                     Description:{" "}
                     <span className="text-gray-500">
                       {" "}
-                      {product.description}
+                      {product?.description}
                     </span>
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
                     Category:{" "}
                     <span className="text-gray-500">
                       {" "}
-                      {product.category.category}
+                      {product?.category?.category}
                     </span>
                   </div>
                   <div className="text-2xl mb-5 text-gray-800 font-bold">
