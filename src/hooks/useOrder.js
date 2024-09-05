@@ -10,7 +10,9 @@ export default function useOrder() {
     setLoading(true);
     try {
       const response = await userApi.getMyOrders();
-      setOrders(response.data.data);
+      if (response) {
+        setOrders(response.data.data);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -21,7 +23,7 @@ export default function useOrder() {
   const deleteOrder = async (orderId) => {
     try {
       await userApi.deleteOrder(orderId);
-      setOrders(orders.filter(order => order.id !== orderId));
+      setOrders(orders.filter((order) => order.id !== orderId));
     } catch (err) {
       setError(err.message);
     }

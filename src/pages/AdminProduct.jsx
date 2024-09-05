@@ -110,7 +110,6 @@ export default function AdminProduct() {
                 action=""
                 className="px-1 py-1  flex flex-row  justify-center items-center  gap-4 "
                 onSubmit={handleSearchBycategory}
-                
               >
                 <div className="shrink-0 w-40">
                   <select
@@ -141,11 +140,11 @@ export default function AdminProduct() {
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" className="px-6 py-3"></th>
+                  <th scope="col" className="px-6 py-3">Image</th>
                   <th scope="col" className="px-6 py-3">
                     Book name
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3 w-2">
                     Author
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -166,19 +165,19 @@ export default function AdminProduct() {
                 {products?.map((product) => (
                   <tr
                     key={product?.id}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    className="bg-white  border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                   >
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 ">
                       <img
                         src={product?.bookPic}
                         alt={product?.bookName}
                         className="w-16 h-16 object-cover"
                       />
                     </td>
-                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden">
                       {product?.bookName}
                     </td>
-                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white overflow-hidden">
                       {product?.author}
                     </td>
                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -195,7 +194,7 @@ export default function AdminProduct() {
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 512 512"
-                          className="fill-blue-600"
+                          className="fill-blue-600 w-7 h-7"
                         >
                           <path d="M352 320c88.4 0 160-71.6 160-160c0-15.3-2.2-30.1-6.2-44.2c-3.1-10.8-16.4-13.2-24.3-5.3l-76.8 76.8c-3 3-7.1 4.7-11.3 4.7H336c-8.8 0-16-7.2-16-16V118.6c0-4.2 1.7-8.3 4.7-11.3l76.8-76.8c7.9-7.9 5.4-21.2-5.3-24.3C382.1 2.2 367.3 0 352 0C263.6 0 192 71.6 192 160c0 19.1 3.4 37.5 9.5 54.5L19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L297.5 310.5c17 6.2 35.4 9.5 54.5 9.5zM80 408a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
                         </svg>
@@ -209,7 +208,7 @@ export default function AdminProduct() {
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
-                          className="fill-red-600"
+                          className="fill-red-600 w-7 h-7"
                         >
                           <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
                         </svg>

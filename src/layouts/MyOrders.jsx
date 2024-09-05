@@ -104,19 +104,32 @@ export default function MyOrders() {
         {orders?.map((order) => (
           <div key={order.id} className="p-4 bg-white rounded shadow-md">
             <h2 className="text-2xl font-bold mb-2">Order ID: {order.id}</h2>
-            <p className="text-gray-700 mb-2">Total Price: ${order.totalPrice}</p>
+            <p className="text-gray-700 mb-2">
+              Total Price: ${order.totalPrice}
+            </p>
             <p className="text-gray-700 mb-2">Address: {order.user.address}</p>
-            <p className="text-gray-700 mb-2">Payment Status: {order.payment.status}</p>
-            <p className="text-gray-700 mb-2">Shipment Status: {order.shipment.status}</p>
+            <p className="text-gray-700 mb-2">
+              Payment Status: {order.payment.status}
+            </p>
+            <p className="text-gray-700 mb-2">
+              Shipment Status: {order.shipment.status}
+            </p>
             <p className="text-gray-700 mb-2">
               Payment Picture:{" "}
-              <img
-                src={order.payment.paymentPic}
-                alt="Payment"
-                className="w-16 h-16 object-cover cursor-pointer"
-                onClick={() => handleImageClick(order.payment.paymentPic)}
-              />
+              {order.payment?.paymentPic ? (
+                <img
+                  src={order.payment.paymentPic}
+                  alt="Payment"
+                  className="w-16 h-16 object-cover cursor-pointer"
+                  onClick={() => handleImageClick(order.payment.paymentPic)}
+                />
+              ) : (
+                <span className="text-red-500">
+                  Please upload the payment picture
+                </span>
+              )}
             </p>
+
             <div className="flex items-center mb-2">
               <input type="file" onChange={handleFileChange} />
               <Button
@@ -139,7 +152,11 @@ export default function MyOrders() {
         ))}
       </div>
       <Modal title="Payment Image" open={!!selectedImage} onClose={closeModal}>
-        <img src={selectedImage} alt="Payment" className="w-full h-full object-cover" />
+        <img
+          src={selectedImage}
+          alt="Payment"
+          className="w-full h-full object-cover"
+        />
       </Modal>
     </>
   );
